@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { getRandomIcon } from "../../icons";
@@ -9,22 +9,24 @@ import "./styles.css";
 function RandomIconViewer() {
   const [icon, setIcon] = useState(() => getRandomIcon());
   const [scheduledShowCounter, setScheduledShowCounter] = useState(0);
+  const [intervalId, setIntervalId] = useState<number | null>(null);
 
   const showRandomIcon = useCallback(() => {
     setScheduledShowCounter((prev) => prev + 1);
-  }, []);
-
-  useEffect(() => {
-    if (!scheduledShowCounter) {
-      return;
+    if (intervalId) {
+        return;
     }
-    const intervalId = setInterval(() => {
-      setIcon(getRandomIcon());
-      setScheduledShowCounter((prev) => prev - 1);
-    }, 3000);
+    const newIntervalId = setInterval(() => {
+        setIcon(getRandomIcon());
+        setScheduledShowCounter((prev) => prev - 1);
+      }, 3000);
+    setIntervalId(newIntervalId);
+  }, [intervalId]);
 
-    return () => clearInterval(intervalId);
-  }, [scheduledShowCounter]);
+  if (!scheduledShowCounter && intervalId) {
+    clearInterval(intervalId);
+    setIntervalId(null);
+  }
 
   return (
     <div className="random-icon-viewer-container">
