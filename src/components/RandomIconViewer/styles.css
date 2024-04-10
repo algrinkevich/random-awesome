@@ -10,6 +10,9 @@
 }
 
 .random-icon-viewer__button {
+    display: flex;
+    gap: 1.6rem;
+    align-items: center;
     font-size: 3rem;
     cursor: pointer;
     padding: 0.3em;
@@ -20,6 +23,6 @@
     height: var(--icon-height);
 }
 
-.random-icon-viewer__spinner{
-    height: var(--icon-height);
+.button__icon {
+    height: 3rem;
 }

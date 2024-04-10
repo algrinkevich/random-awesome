@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import * as solidIcons from "@fortawesome/free-solid-svg-icons";
@@ -26,14 +26,27 @@ const getRandomIcon = () => ICONS[Math.floor(Math.random() * ICONS.length)];
 function RandomIconViewer() {
   const [icon, setIcon] = useState(() => getRandomIcon());
   const [isLoading, setIsLoading] = useState(false);
+  const [counter, setCounter] = useState(0);
 
   const showRandomIcon = useCallback(() => {
+    setCounter((prev) => prev + 1);
     setIsLoading(true);
-    setTimeout(() => {
-      setIcon(getRandomIcon());
-      setIsLoading(false);
-    }, 500);
   }, []);
+  
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (!counter) {
+        return;
+      }
+      if (counter === 1) {
+        setIsLoading(false);
+      }
+      setIcon(getRandomIcon());
+      setCounter((prev) => prev - 1);
+    }, 3000);
+
+    return () => clearInterval(intervalId);
+  }, [counter]);
 
   return (
     <div className="random-icon-viewer-container">
@@ -41,18 +54,19 @@ function RandomIconViewer() {
         onClick={() => showRandomIcon()}
         className="random-icon-viewer__button"
       >
-        Generate Icon
+        Get Icon
+        {isLoading ? (
+          <FontAwesomeIcon
+            icon={solidIcons.faSpinner}
+            spinPulse
+            className="random-icon-viewer__spinner button__icon"
+          />
+        ) : (
+          <FontAwesomeIcon icon={solidIcons.faIcons} className="button__icon" />
+        )}
       </button>
-      {isLoading ? (
-        <FontAwesomeIcon
-          icon={solidIcons.faSpinner}
-          spinPulse
-          size="2xl"
-          className="random-icon-viewer__spinner"
-        />
-      ) : (
-        <FontAwesomeIcon className="random-icon-viewer__icon" icon={icon} />
-      )}
+
+      <FontAwesomeIcon className="random-icon-viewer__icon" icon={icon} />
     </div>
   );
 }
