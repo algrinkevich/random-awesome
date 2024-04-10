@@ -6,26 +6,28 @@ import GetIconButton from "../GetIconButton";
 
 import "./styles.css";
 
+const CHANGE_ICON_INTERVAL_MS = 3_000;
+
 function RandomIconViewer() {
   const [icon, setIcon] = useState(() => getRandomIcon());
   const [scheduledShowCounter, setScheduledShowCounter] = useState(0);
-  const [intervalId, setIntervalId] = useState<number | null>(null);
+  const [changeIconIntervalId, setChangeIconIntervalId] = useState<number | null>(null);
 
   const showRandomIcon = useCallback(() => {
     setScheduledShowCounter((prev) => prev + 1);
-    if (intervalId) {
+    if (changeIconIntervalId) {
         return;
     }
     const newIntervalId = setInterval(() => {
         setIcon(getRandomIcon());
         setScheduledShowCounter((prev) => prev - 1);
-      }, 3000);
-    setIntervalId(newIntervalId);
-  }, [intervalId]);
+      }, CHANGE_ICON_INTERVAL_MS);
+    setChangeIconIntervalId(newIntervalId);
+  }, [changeIconIntervalId]);
 
-  if (!scheduledShowCounter && intervalId) {
-    clearInterval(intervalId);
-    setIntervalId(null);
+  if (!scheduledShowCounter && changeIconIntervalId) {
+    clearInterval(changeIconIntervalId);
+    setChangeIconIntervalId(null);
   }
 
   return (
