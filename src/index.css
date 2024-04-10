@@ -9,6 +9,6 @@
 
 body {
   margin: 0;
-  background: url(./assets/bg.png);
+  background: url(./assets/bg.jpg) lightskyblue;
   background-size: cover;
 }
