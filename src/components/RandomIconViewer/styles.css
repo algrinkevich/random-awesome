@@ -9,20 +9,6 @@
     width: fit-content;
 }
 
-.random-icon-viewer__button {
-    display: flex;
-    gap: 1.6rem;
-    align-items: center;
-    font-size: 3rem;
-    cursor: pointer;
-    padding: 0.3em;
-    user-select: none;
-}
-
 .random-icon-viewer__icon{
     height: var(--icon-height);
-}
-
-.button__icon {
-    height: 3rem;
 }

@@ -5,6 +5,8 @@ import * as solidIcons from "@fortawesome/free-solid-svg-icons";
 import * as brandsIcons from "@fortawesome/free-brands-svg-icons";
 import * as regularIcons from "@fortawesome/free-regular-svg-icons";
 
+import GetIconButton from "../GetIconButton";
+
 import "./styles.css";
 
 const extractIcons = (
@@ -25,12 +27,10 @@ const getRandomIcon = () => ICONS[Math.floor(Math.random() * ICONS.length)];
 
 function RandomIconViewer() {
   const [icon, setIcon] = useState(() => getRandomIcon());
-  const [isLoading, setIsLoading] = useState(false);
   const [scheduledShowCounter, setScheduledShowCounter] = useState(0);
 
   const showRandomIcon = useCallback(() => {
     setScheduledShowCounter((prev) => prev + 1);
-    setIsLoading(true);
   }, []);
 
   useEffect(() => {
@@ -38,9 +38,6 @@ function RandomIconViewer() {
       return;
     }
     const intervalId = setInterval(() => {
-      if (scheduledShowCounter === 1) {
-        setIsLoading(false);
-      }
       setIcon(getRandomIcon());
       setScheduledShowCounter((prev) => prev - 1);
     }, 3000);
@@ -50,23 +47,13 @@ function RandomIconViewer() {
 
   return (
     <div className="random-icon-viewer-container">
-      <button
-        onClick={() => showRandomIcon()}
-        className="random-icon-viewer__button"
+      <FontAwesomeIcon className="random-icon-viewer__icon" icon={icon} />
+      <GetIconButton
+        isLoading={scheduledShowCounter > 0}
+        onClick={showRandomIcon}
       >
         Get Icon
-        {isLoading ? (
-          <FontAwesomeIcon
-            icon={solidIcons.faSpinner}
-            spinPulse
-            className="random-icon-viewer__spinner button__icon"
-          />
-        ) : (
-          <FontAwesomeIcon icon={solidIcons.faIcons} className="button__icon" />
-        )}
-      </button>
-
-      <FontAwesomeIcon className="random-icon-viewer__icon" icon={icon} />
+      </GetIconButton>
     </div>
   );
 }
