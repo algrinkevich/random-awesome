@@ -26,13 +26,12 @@ const GetIconButton = ({
             spinPulse
             className="get-icon-button__icon"
           />
-          <span className="get-icon-button__counter">{counter ? `${counter}` : ""}</span>
+          <span className="get-icon-button__counter">
+            {counter ? `${counter}` : ""}
+          </span>
         </div>
       ) : (
-        <FontAwesomeIcon
-          icon={faIcons}
-          className="get-icon-button__icon"
-        />
+        <FontAwesomeIcon icon={faIcons} className="get-icon-button__icon" />
       )}
     </button>
   );

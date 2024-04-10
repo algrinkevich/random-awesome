@@ -1,6 +1,7 @@
 import { useCallback, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import { useIntervalCall } from "../../hooks";
 import { getRandomIcon } from "../../icons";
 import GetIconButton from "../GetIconButton";
 
@@ -11,24 +12,21 @@ const CHANGE_ICON_INTERVAL_MS = 3_000;
 function RandomIconViewer() {
   const [icon, setIcon] = useState(() => getRandomIcon());
   const [scheduledShowCounter, setScheduledShowCounter] = useState(0);
-  const [changeIconIntervalId, setChangeIconIntervalId] = useState<number | null>(null);
+  const changeIcon = useCallback(() => {
+    setIcon(getRandomIcon());
+    setScheduledShowCounter((prev) => prev - 1);
+  }, []);
+
+  const scheduleInterval = useIntervalCall({
+    reset: !scheduledShowCounter,
+    intervalMs: CHANGE_ICON_INTERVAL_MS,
+    callback: changeIcon,
+  });
 
   const showRandomIcon = useCallback(() => {
     setScheduledShowCounter((prev) => prev + 1);
-    if (changeIconIntervalId) {
-        return;
-    }
-    const newIntervalId = setInterval(() => {
-        setIcon(getRandomIcon());
-        setScheduledShowCounter((prev) => prev - 1);
-      }, CHANGE_ICON_INTERVAL_MS);
-    setChangeIconIntervalId(newIntervalId);
-  }, [changeIconIntervalId]);
-
-  if (!scheduledShowCounter && changeIconIntervalId) {
-    clearInterval(changeIconIntervalId);
-    setChangeIconIntervalId(null);
-  }
+    scheduleInterval();
+  }, [scheduleInterval]);
 
   return (
     <div className="random-icon-viewer-container">
