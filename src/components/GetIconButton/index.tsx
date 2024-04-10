@@ -21,10 +21,13 @@ const GetIconButton = ({
         <FontAwesomeIcon
           icon={faSpinner}
           spinPulse
-          className="random-icon-viewer__spinner button__icon"
+          className="random-icon-viewer__spinner random-icon-viewer__button-icon"
         />
       ) : (
-        <FontAwesomeIcon icon={faIcons} className="button__icon" />
+        <FontAwesomeIcon
+          icon={faIcons}
+          className="random-icon-viewer__button-icon"
+        />
       )}
     </button>
   );

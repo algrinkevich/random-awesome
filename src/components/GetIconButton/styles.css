@@ -16,7 +16,6 @@
     border: none;
     box-shadow: 44px 30px 66px -10px rgba(0,0,0,0.75);
     transition: all 0.3s ease-out;
-    letter-spacing: 0.4px;
 
     &:hover {
         transform: scale(1.05);
@@ -27,6 +26,6 @@
     }
 }
 
-.button__icon {
+.random-icon-viewer__button-icon {
     height: 3rem;
 }
