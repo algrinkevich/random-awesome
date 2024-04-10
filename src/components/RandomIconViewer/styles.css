@@ -1,0 +1,15 @@
+.viewer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+button {
+    font-size: 3rem;
+    cursor: pointer;
+    padding: 0.3em;
+}
+
+.icon-svg {
+    height: 8rem;
+}
