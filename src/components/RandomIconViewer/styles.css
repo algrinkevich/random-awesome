@@ -1,16 +1,25 @@
-.viewer-container {
+:root {
+    --icon-height: 8rem;
+}
+
+.random-icon-viewer-container {
     display: flex;
     flex-direction: column;
     gap: 2rem;
     width: fit-content;
 }
 
-button {
+.random-icon-viewer__button {
     font-size: 3rem;
     cursor: pointer;
     padding: 0.3em;
+    user-select: none;
 }
 
-.icon-svg {
-    height: 8rem;
+.random-icon-viewer__icon{
+    height: var(--icon-height);
+}
+
+.random-icon-viewer__spinner{
+    height: var(--icon-height);
 }
