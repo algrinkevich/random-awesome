@@ -1,14 +1,13 @@
-:root {
-    --icon-height: 8rem;
-}
+
 
 .random-icon-viewer-container {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 4rem;
     width: fit-content;
 }
 
 .random-icon-viewer__icon{
-    height: var(--icon-height);
+    height: 12rem;
+    color: var(--primary-color);
 }

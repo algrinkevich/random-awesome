@@ -1,11 +1,30 @@
 .random-icon-viewer__button {
+    font-family: "Varela Round", sans-serif;
     display: flex;
     gap: 1.6rem;
     align-items: center;
+    justify-content: center;
     font-size: 3rem;
     cursor: pointer;
-    padding: 0.3em;
+    padding-block: 1.2rem;
+    padding-inline: 2rem;
     user-select: none;
+    border-radius: 3rem;
+    background-color: var(--primary-color);
+    font-weight: 600;
+    color: var(--secondary-color);
+    border: none;
+    box-shadow: 44px 30px 66px -10px rgba(0,0,0,0.75);
+    transition: all 0.3s ease-out;
+    letter-spacing: 0.4px;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    &:active {
+        background-color: #e5e5f0bd;
+    }
 }
 
 .button__icon {
