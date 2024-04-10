@@ -16,6 +16,7 @@
     border: none;
     box-shadow: 44px 30px 66px -10px rgba(0,0,0,0.75);
     transition: all 0.3s ease-out;
+    
 
     &:hover {
         transform: scale(1.05);
@@ -24,8 +25,22 @@
     &:active {
         background-color: #e5e5f0bd;
     }
+
+    .icon-container {
+        position: relative;
+    }
+    
+    .icon-counter {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.1rem;
+    }
 }
 
 .random-icon-viewer__button-icon {
     height: 3rem;
 }
+
+

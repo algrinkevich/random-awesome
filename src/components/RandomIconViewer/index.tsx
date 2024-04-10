@@ -32,6 +32,7 @@ function RandomIconViewer() {
       <GetIconButton
         isLoading={scheduledShowCounter > 0}
         onClick={showRandomIcon}
+        counter={scheduledShowCounter}
       >
         Get Icon
       </GetIconButton>
