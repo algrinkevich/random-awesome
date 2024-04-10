@@ -17,21 +17,21 @@ const GetIconButton = ({
   counter,
 }: GetIconButtonProps) => {
   return (
-    <button onClick={onClick} className="random-icon-viewer__button">
+    <button onClick={onClick} className="get-icon-button">
       {children}
       {isLoading ? (
-        <div className="icon-container">
+        <div className="get-icon-button__spinner">
           <FontAwesomeIcon
             icon={faSpinner}
             spinPulse
-            className="random-icon-viewer__spinner random-icon-viewer__button-icon"
+            className="get-icon-button__icon"
           />
-          <span className="icon-counter">{counter ? `${counter}` : ""}</span>
+          <span className="get-icon-button__counter">{counter ? `${counter}` : ""}</span>
         </div>
       ) : (
         <FontAwesomeIcon
           icon={faIcons}
-          className="random-icon-viewer__button-icon"
+          className="get-icon-button__icon"
         />
       )}
     </button>

@@ -1,4 +1,4 @@
-.random-icon-viewer__button {
+.get-icon-button {
     font-family: "Varela Round", sans-serif;
     display: flex;
     gap: 1.6rem;
@@ -16,7 +16,6 @@
     border: none;
     box-shadow: 44px 30px 66px -10px rgba(0,0,0,0.75);
     transition: all 0.3s ease-out;
-    
 
     &:hover {
         transform: scale(1.05);
@@ -25,22 +24,20 @@
     &:active {
         background-color: #e5e5f0bd;
     }
-
-    .icon-container {
-        position: relative;
-    }
-    
-    .icon-counter {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 1.1rem;
-    }
 }
 
-.random-icon-viewer__button-icon {
+.get-icon-button__spinner {
+    position: relative;
+}
+
+.get-icon-button__counter {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.1rem;
+}
+
+.get-icon-button__icon{
     height: 3rem;
 }
-
-
