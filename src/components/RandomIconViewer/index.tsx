@@ -26,27 +26,27 @@ const getRandomIcon = () => ICONS[Math.floor(Math.random() * ICONS.length)];
 function RandomIconViewer() {
   const [icon, setIcon] = useState(() => getRandomIcon());
   const [isLoading, setIsLoading] = useState(false);
-  const [counter, setCounter] = useState(0);
+  const [scheduledShowCounter, setScheduledShowCounter] = useState(0);
 
   const showRandomIcon = useCallback(() => {
-    setCounter((prev) => prev + 1);
+    setScheduledShowCounter((prev) => prev + 1);
     setIsLoading(true);
   }, []);
-  
+
   useEffect(() => {
+    if (!scheduledShowCounter) {
+      return;
+    }
     const intervalId = setInterval(() => {
-      if (!counter) {
-        return;
-      }
-      if (counter === 1) {
+      if (scheduledShowCounter === 1) {
         setIsLoading(false);
       }
       setIcon(getRandomIcon());
-      setCounter((prev) => prev - 1);
+      setScheduledShowCounter((prev) => prev - 1);
     }, 3000);
 
     return () => clearInterval(intervalId);
-  }, [counter]);
+  }, [scheduledShowCounter]);
 
   return (
     <div className="random-icon-viewer-container">
