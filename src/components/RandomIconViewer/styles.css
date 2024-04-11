@@ -8,4 +8,5 @@
 .random-icon-viewer__icon{
     height: 12rem;
     color: var(--primary-color);
+    text-rendering: optimizeLegibility;
 }

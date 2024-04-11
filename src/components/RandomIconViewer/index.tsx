@@ -28,8 +28,11 @@ function RandomIconViewer() {
     scheduleInterval();
   }, [scheduleInterval]);
 
+  // it's necessary to unmount the whole component to fix svg rendering issues in Safari
+  const containerKey = icon.iconName;
+
   return (
-    <div className="random-icon-viewer-container">
+    <div className="random-icon-viewer-container" key={containerKey}>
       <FontAwesomeIcon className="random-icon-viewer__icon" icon={icon} />
       <GetIconButton
         isLoading={scheduledShowCounter > 0}
