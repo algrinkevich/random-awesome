@@ -25,6 +25,7 @@ const GetIconButton = ({
             icon={faSpinner}
             spinPulse
             className="get-icon-button__icon"
+            title="spinner"
           />
           <span className="get-icon-button__counter">
             {counter ? `${counter}` : ""}
