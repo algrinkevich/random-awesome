@@ -5,6 +5,13 @@ import RandomIconViewer from "./index";
 
 const ICON_SHOW_DELAY = 3000;
 
+function setup() {
+  const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+  render(<RandomIconViewer />);
+
+  return { user };
+}
+
 describe("Random icon viewer component tests", () => {
   beforeAll(() => {
     globalThis.jest = {
@@ -23,8 +30,8 @@ describe("Random icon viewer component tests", () => {
   });
 
   test("Button and icon are displayed when starting the app", () => {
-    render(<RandomIconViewer />);
-
+    setup();
+    
     const buttonEl = screen.getByRole("button", {
       name: /get icon/i,
     });
@@ -36,10 +43,7 @@ describe("Random icon viewer component tests", () => {
   });
 
   test("New icon is displayed after 3 seconds when button is pressed", async () => {
-    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
-
-    render(<RandomIconViewer />);
-
+    const { user } = setup();
     const previousIcon = screen.getByTitle(/icon$/i);
     const buttonEl = screen.getByRole("button", {
       name: /get icon/i,
@@ -56,10 +60,7 @@ describe("Random icon viewer component tests", () => {
   });
 
   test("New icon is not displayed after 2999 ms when button is pressed", async () => {
-    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
-
-    render(<RandomIconViewer />);
-
+    const { user } = setup();
     const previousIcon = screen.getByTitle(/icon$/i);
     const buttonEl = screen.getByRole("button", {
       name: /get icon/i,
@@ -77,10 +78,7 @@ describe("Random icon viewer component tests", () => {
   });
 
   test("Corresponding icon and number are displayed on button on every click", async () => {
-    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
-
-    render(<RandomIconViewer />);
-
+    const { user } = setup();
     const numOfClicks = 3;
     let previousIcon = screen.getByTitle(/icon$/i);
     const buttonEl = screen.getByRole("button", {
