@@ -33,7 +33,11 @@ function RandomIconViewer() {
 
   return (
     <div className="random-icon-viewer-container" key={containerKey}>
-      <FontAwesomeIcon className="random-icon-viewer__icon" icon={icon} />
+      <FontAwesomeIcon
+        className="random-icon-viewer__icon"
+        icon={icon}
+        title={`${icon.iconName.split("-").join(" ")} icon`}
+      />
       <GetIconButton
         isLoading={scheduledShowCounter > 0}
         onClick={showRandomIcon}
