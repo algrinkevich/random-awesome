@@ -8,7 +8,7 @@ interface UseIntervalCallProps {
 
 export function useIntervalCall({ reset, callback, intervalMs }: UseIntervalCallProps) {
   const [intervalId, setIntervalId] = useState<
-    number | null
+    NodeJS.Timeout | null
   >(null);
 
   const scheduleInterval = useCallback(() => {
