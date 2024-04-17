@@ -1,3 +1,5 @@
+[![Node.js CI](https://github.com/algrinkevich/random-awesome/actions/workflows/node.js.yml/badge.svg)](https://github.com/algrinkevich/random-awesome/actions/workflows/node.js.yml)
+
 # Random Awesome react app
 The app for getting random icons from the Font Awesome library.
 - When you click the button, a random icon from the library will be shown with a delay of 3 seconds. 
